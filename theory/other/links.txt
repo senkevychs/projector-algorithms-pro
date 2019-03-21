@@ -1,0 +1,23 @@
+https://discrete.gr/complexity/?fbclid=IwAR3L-QUCSUAq-0hzTyPhOjOgX1ZLkVn9WmZvy7sdAXuX18Qpb_rglLftWlw
+
+статья от авторов <O(N), O(1)> алгоритма (Bender, Farach-Colton): 
+https://www.ics.uci.edu/~eppstein/261/BenFar-LCA-00.pdf
+
+популярная статья 
+https://www.topcoder.com/community/competitive-programming/tutorials/range-minimum-query-and-lowest-common-ancestor/ 
+
+популярная статья о динамическом программировании: 
+https://www.topcoder.com/community/competitive-programming/tutorials/dynamic-programming-from-novice-to-advanced/
+
+https://castel.dev/post/lecture-notes-1/ — если кто-то собирается конспектировать на ноуте
+
+https://en.wikipedia.org/wiki/Modular_arithmetic 
+может быть полезно для вывода ответа в некоторых задачах (а именно 2 и 4) (first HW)
+
+Создал репозиторий где буду складывать варианты тест кейсов для задач.
+https://github.com/Tonna/2019-algo-advanced/
+
+https://gist.github.com/jboner/2841832 
+полезно для оценки времени работы вашей программы (Main memory reference и выше)
+
+идея, которую всегда полезно помнить: [L, R) = [0, R) - [0, L). часто это помогает упростить код
