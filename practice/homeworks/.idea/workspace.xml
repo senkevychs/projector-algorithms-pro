@@ -15,13 +15,14 @@
       <file leaf-file-name="MediansInATree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="123" column="9" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+            <state relative-caret-position="399">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#dfs#0;class#MediansInATree#0" />
-                <element signature="method#buildEuler#1;class#MediansInATree#0" />
-                <element signature="method#calculateConstants#0;class#MediansInATree#0" />
+                <element signature="method#buildTree#0;class#MediansInATree#0" />
+                <element signature="method#buildTable#0;class#MediansInATree#0" />
+                <element signature="method#query#0;class#MediansInATree#0" />
+                <element signature="method#lca#0;class#MediansInATree#0" />
               </folding>
             </state>
           </provider>
@@ -178,12 +179,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553206710771</updated>
       <workItem from="1553206715066" duration="283000" />
-      <workItem from="1553287607957" duration="8504000" />
+      <workItem from="1553287607957" duration="17600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8787000" />
+    <option name="totallyTimeSpent" value="17883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="710" extended-state="6" />
@@ -231,16 +232,57 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java</url>
-          <line>37</line>
+          <line>212</line>
           <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="12" />
+      <option name="time" value="17" />
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="dfs.size() - 1 - powersOfTwo[i]" language="JAVA" />
+        <watch expression="(1 + (i - 1) % n)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>(1 + (i - 1) % n)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>dfs.size() - 1 - powersOfTwo[i]</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lca(1, 1);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lca(1, 0);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lca(1, 3);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lca(1, 4);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>lca(4, 3);</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>lca(4, 3)</expression-string>
         <language-id>JAVA</language-id>
@@ -265,9 +307,10 @@
           <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#dfs#0;class#MediansInATree#0" />
-            <element signature="method#buildEuler#1;class#MediansInATree#0" />
-            <element signature="method#calculateConstants#0;class#MediansInATree#0" />
+            <element signature="method#buildTree#0;class#MediansInATree#0" />
+            <element signature="method#buildTable#0;class#MediansInATree#0" />
+            <element signature="method#query#0;class#MediansInATree#0" />
+            <element signature="method#lca#0;class#MediansInATree#0" />
           </folding>
         </state>
       </provider>
@@ -299,13 +342,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="123" column="9" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+        <state relative-caret-position="399">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#dfs#0;class#MediansInATree#0" />
-            <element signature="method#buildEuler#1;class#MediansInATree#0" />
-            <element signature="method#calculateConstants#0;class#MediansInATree#0" />
+            <element signature="method#buildTree#0;class#MediansInATree#0" />
+            <element signature="method#buildTable#0;class#MediansInATree#0" />
+            <element signature="method#query#0;class#MediansInATree#0" />
+            <element signature="method#lca#0;class#MediansInATree#0" />
           </folding>
         </state>
       </provider>
