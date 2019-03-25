@@ -15,11 +15,10 @@
       <file leaf-file-name="MediansInATree.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+            <state relative-caret-position="72">
+              <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#buildTree#0;class#MediansInATree#0" />
                 <element signature="method#buildTable#0;class#MediansInATree#0" />
                 <element signature="method#query#0;class#MediansInATree#0" />
                 <element signature="method#lca#0;class#MediansInATree#0" />
@@ -36,6 +35,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>logs</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -179,12 +183,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553206710771</updated>
       <workItem from="1553206715066" duration="283000" />
-      <workItem from="1553287607957" duration="17600000" />
+      <workItem from="1553287607957" duration="18299000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17883000" />
+    <option name="totallyTimeSpent" value="18582000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="710" extended-state="6" />
@@ -211,7 +215,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3993174" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.3993174" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -232,12 +236,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java</url>
-          <line>212</line>
+          <line>200</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java</url>
+          <line>182</line>
+          <properties />
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="17" />
+      <option name="time" value="18" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -307,7 +317,6 @@
           <caret line="3" column="1" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#buildTree#0;class#MediansInATree#0" />
             <element signature="method#buildTable#0;class#MediansInATree#0" />
             <element signature="method#query#0;class#MediansInATree#0" />
             <element signature="method#lca#0;class#MediansInATree#0" />
@@ -342,11 +351,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hw1/medians_in_a_tree/MediansInATree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+        <state relative-caret-position="72">
+          <caret line="182" column="40" selection-start-line="182" selection-start-column="40" selection-end-line="182" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#buildTree#0;class#MediansInATree#0" />
             <element signature="method#buildTable#0;class#MediansInATree#0" />
             <element signature="method#query#0;class#MediansInATree#0" />
             <element signature="method#lca#0;class#MediansInATree#0" />

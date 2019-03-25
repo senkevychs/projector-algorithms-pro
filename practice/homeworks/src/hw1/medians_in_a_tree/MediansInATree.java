@@ -12,15 +12,13 @@ public class MediansInATree {
     private static int n;
 
     private static List<List<Integer>> tree;
-    private static List<Integer> dfs;
     private static List<Integer> euler;
     private static List<Integer> eulerDepths;
 
     private static int[] depths;
     private static int[] firstInEuler;
 
-    private static int[] logsN;
-    private static int[] logsEuler;
+    private static int[] logs;
     private static int[] powersOfTwo = new int[20];
 
     private static int[][] sparseTable;
@@ -44,79 +42,56 @@ public class MediansInATree {
     private static void buildTree() throws IOException {
         n = nextInt();
         tree = new ArrayList<>(n);
+        jumpPointers = new int[n][18];
         for (int i = 0; i < n; i++) {
             tree.add(new ArrayList<>());
         }
         for (int i = 1; i < n; ++i) {
             int parent = nextInt() - 1;
             tree.get(parent).add(i);
+            jumpPointers[i][0] = parent;
         }
     }
 
     private static void preprocess() {
-        calculateConstants();
         dfs();
         buildSparse(euler.size());
-    }
-
-    private static void calculateConstants() {
-        logsN = getLogs(n);
-
-        powersOfTwo[0] = 1;
-        for (int i = 1; i < powersOfTwo.length; i++) {
-            powersOfTwo[i] = powersOfTwo[i - 1] * 2;
-        }
+        fillJumpPointers();
     }
 
     private static void dfs() {
         boolean[] visited = new boolean[n];
         euler = new ArrayList<>();
-        dfs = new ArrayList<>();
         eulerDepths = new ArrayList<>();
         firstInEuler = new int[n];
         depths = new int[n];
-        jumpPointers = new int[n][];
         dfs(visited, 0, 0);
     }
 
     private static void dfs(boolean[] visited, int v, int curDepth) {
         euler.add(v);
-        dfs.add(v);
         eulerDepths.add(curDepth);
         if (firstInEuler[v] == 0) {
             firstInEuler[v] = euler.size() - 1;
         }
         visited[v] = true;
         depths[v] = curDepth;
-        int[] jumpPointersForChild = getJumps();
         for (int child : tree.get(v)) {
             if (!visited[child]) {
                 dfs(visited, child, curDepth + 1);
                 euler.add(v);
                 eulerDepths.add(curDepth);
-                jumpPointers[child] = jumpPointersForChild;
             }
         }
     }
 
-    private static int[] getJumps() {
-        int[] jumps = new int[logsN[dfs.size()] + 2];
-        jumps[0] = dfs.get(dfs.size() - 1);
-        int i = 0;
-        while (dfs.size() - 1 - powersOfTwo[i] >= 0) {
-            jumps[i + 1] = dfs.get(dfs.size() - 1 - powersOfTwo[i]);
-            i++;
-        }
-        return jumps;
-    }
-
     private static void buildSparse(int size) {
-        logsEuler = getLogs(size);
+        calculateConstants(size);
         buildTable(size);
     }
 
-    private static int[] getLogs(int size) {
-        int[] logs = new int[size + 1];
+    private static void calculateConstants(int size) {
+        logs = new int[size + 1];
         int powerValue = 1, logValue = 0;
         for (int i = 1; i <= size; i++) {
             logs[i] = logValue - 1;
@@ -126,11 +101,15 @@ public class MediansInATree {
                 logValue++;
             }
         }
-        return logs;
+
+        powersOfTwo[0] = 1;
+        for (int i = 1; i < powersOfTwo.length; i++) {
+            powersOfTwo[i] = powersOfTwo[i - 1] * 2;
+        }
     }
 
     private static void buildTable(int size) {
-        sparseTable = new int[size][logsEuler[size] + 1];
+        sparseTable = new int[size][logs[size] + 1];
         for (int i = 0; i < size; i++) {
             sparseTable[i][0] = i;
         }
@@ -147,7 +126,7 @@ public class MediansInATree {
 
     private static int query(int u, int v) {
         int l = v - u;
-        int k = logsEuler[l];
+        int k = logs[l];
         if (u == v) return u;
         if (eulerDepths.get(sparseTable[u][k]) > eulerDepths.get(sparseTable[v - powersOfTwo[k]][k])) {
             return sparseTable[v - powersOfTwo[k]][k];
@@ -197,6 +176,14 @@ public class MediansInATree {
             i++;
         }
         return x;
+    }
+
+    private static void fillJumpPointers() {
+        for (int j = 1; j <= logs[n] + 1; j++) {
+            for (int i = 1; i < n; i++) {
+                jumpPointers[i][j] = jumpPointers[jumpPointers[i][j - 1]][j - 1];
+            }
+        }
     }
 
     private static void printTestResults() throws IOException {
