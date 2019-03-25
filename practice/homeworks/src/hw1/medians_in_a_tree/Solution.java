@@ -7,24 +7,37 @@ import java.io.StreamTokenizer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MediansInATree {
+/**
+ * https://www.hackerrank.com/contests/projector-algo-advanced-1-hw-1/challenges/medians-in-a-tree
+ * Idea: LCA of two nodes will occur in the shortest path between them.
+ *   1. Find LCA (Euler tour + sparse table RMQ).
+ *   2. Find L = the length of the shortest path P / 2 = distance from U to LCA + distance from V to LCA / 2.
+ *   3. Distance from U to median is L, from V to median is (P - L). Find one that is less then distance from the
+ *   node to LCA. Let it be L'.
+ *   4. The last thing is to find the L's ancestor of the node. It'll be the median we search for. It can be done
+ *   with the help of jump pointers.
+ */
+public class Solution {
 
-    private static int n;
+    private int n;
 
-    private static List<List<Integer>> tree;
-    private static List<Integer> euler;
-    private static List<Integer> eulerDepths;
+    private List<List<Integer>> tree;
+    private List<Integer> euler;
+    private List<Integer> eulerDepths;
 
-    private static int[] depths;
-    private static int[] firstInEuler;
+    private boolean[] visited;
+    private int[] depths;
+    private int[] firstInEuler;
 
-    private static int[] logs;
-    private static int[] powersOfTwo = new int[20];
+    private int[][] sparseTable;
 
-    private static int[][] sparseTable;
-    private static int[][] jumpPointers;
+    private int[][] jumpPointers;
 
-    private static int nextInt() throws IOException {
+    // constants
+    private int[] logs;
+    private int[] powersOfTwo = new int[20];
+
+    private int nextInt() throws IOException {
         streamTokenizer.nextToken();
         return (int)streamTokenizer.nval;
     }
@@ -32,6 +45,10 @@ public class MediansInATree {
     private static StreamTokenizer streamTokenizer;
 
     public static void main(String[] args) throws IOException {
+        new Solution().run();
+    }
+
+    private void run() throws IOException {
         streamTokenizer = new StreamTokenizer(new BufferedReader(new InputStreamReader(System.in)));
 
         buildTree();
@@ -39,7 +56,7 @@ public class MediansInATree {
         printTestResults();
     }
 
-    private static void buildTree() throws IOException {
+    private void buildTree() throws IOException {
         n = nextInt();
         tree = new ArrayList<>(n);
         jumpPointers = new int[n][18];
@@ -53,22 +70,22 @@ public class MediansInATree {
         }
     }
 
-    private static void preprocess() {
+    private void preprocess() {
         dfs();
         buildSparse(euler.size());
         fillJumpPointers();
     }
 
-    private static void dfs() {
-        boolean[] visited = new boolean[n];
+    private void dfs() {
+        visited = new boolean[n];
         euler = new ArrayList<>();
         eulerDepths = new ArrayList<>();
         firstInEuler = new int[n];
         depths = new int[n];
-        dfs(visited, 0, 0);
+        dfs(0, 0);
     }
 
-    private static void dfs(boolean[] visited, int v, int curDepth) {
+    private void dfs(int v, int curDepth) {
         euler.add(v);
         eulerDepths.add(curDepth);
         if (firstInEuler[v] == 0) {
@@ -76,21 +93,22 @@ public class MediansInATree {
         }
         visited[v] = true;
         depths[v] = curDepth;
-        for (int child : tree.get(v)) {
+        for (int i = 0; i < tree.get(v).size(); i++) {
+            int child = tree.get(v).get(i);
             if (!visited[child]) {
-                dfs(visited, child, curDepth + 1);
+                dfs(child, curDepth + 1);
                 euler.add(v);
                 eulerDepths.add(curDepth);
             }
         }
     }
 
-    private static void buildSparse(int size) {
+    private void buildSparse(int size) {
         calculateConstants(size);
         buildTable(size);
     }
 
-    private static void calculateConstants(int size) {
+    private void calculateConstants(int size) {
         logs = new int[size + 1];
         int powerValue = 1, logValue = 0;
         for (int i = 1; i <= size; i++) {
@@ -108,7 +126,7 @@ public class MediansInATree {
         }
     }
 
-    private static void buildTable(int size) {
+    private void buildTable(int size) {
         sparseTable = new int[size][logs[size] + 1];
         for (int i = 0; i < size; i++) {
             sparseTable[i][0] = i;
@@ -124,7 +142,7 @@ public class MediansInATree {
         }
     }
 
-    private static int query(int u, int v) {
+    private int query(int u, int v) {
         int l = v - u;
         int k = logs[l];
         if (u == v) return u;
@@ -135,7 +153,7 @@ public class MediansInATree {
         }
     }
 
-    private static int lca(int u, int v) {
+    private int lca(int u, int v) {
         if (u == v) {
             return u;
         }
@@ -147,7 +165,7 @@ public class MediansInATree {
         return euler.get(query(firstInEuler[u], firstInEuler[v]));
     }
 
-    private static int median(int u, int v) {
+    private int median(int u, int v) {
         u--;
         v--;
         int lca = lca(u, v);
@@ -163,7 +181,7 @@ public class MediansInATree {
         }
     }
 
-    private static int getAncestorOfDepth(int u, int rank) {
+    private int getAncestorOfDepth(int u, int rank) {
         int i = 0, x = u;
         if (rank == 0) {
             return u;
@@ -178,7 +196,7 @@ public class MediansInATree {
         return x;
     }
 
-    private static void fillJumpPointers() {
+    private void fillJumpPointers() {
         for (int j = 1; j <= logs[n] + 1; j++) {
             for (int i = 1; i < n; i++) {
                 jumpPointers[i][j] = jumpPointers[jumpPointers[i][j - 1]][j - 1];
@@ -186,17 +204,16 @@ public class MediansInATree {
         }
     }
 
-    private static void printTestResults() throws IOException {
+    private void printTestResults() throws IOException {
         int testsCount = nextInt();
         for (int i = 0; i < testsCount; i++) {
             printTestResult(nextInt(), nextInt());
         }
     }
 
-    private static void printTestResult(int a, int q) {
-        int sum = 0;
+    private void printTestResult(int a, int q) {
+        long sum = 0;
         for (int i = 1; i <= q; i++) {
-            System.out.println("Median(" + a + ", " + (1 + (i - 1) % n) + ") = " + median(a, 1 + (i - 1) % n));
             a = median(a, 1 + (i - 1) % n);
             sum += a;
         }

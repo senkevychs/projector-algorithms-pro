@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="NGMPluginSettings">
+    <option name="allLanguages">
+      <array>
+        <option value="en" />
+      </array>
+    </option>
+    <option name="allowProcessExternalJmms" value="true" />
+    <option name="enableSoundsPlayer" value="false" />
+    <option name="highlightUndefined" value="false" />
+    <option name="imageEditorType" value="BOTH" />
+    <option name="runAnnotator" value="false" />
+    <option name="selectedLanguage" value="en" />
+    <option name="showExpressionValuesHints" value="true" />
+    <option name="showObjectTypesHints" value="false" />
+  </component>
+  <component name="RuntimeToolConfig">
+    <option name="defaultDiffDirName" value=".temp" />
+    <option name="rootFileName" value="diff.json" />
+  </component>
+</project>
